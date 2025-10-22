@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImunSehat - Penyuluhan Imunisasi Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00B4D8;
+            --secondary-color: #0077B6;
+            --accent-color: #90E0EF;
+            --text-dark: #03045E;
+            --text-light: #CAF0F8;
+            --white: #FFFFFF;
+            --gray: #6C757D;
+            --success: #52B788;
+            --warning: #F77F00;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 120px 2rem 80px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* Info Cards Section */
+        .info-section {
+            padding: 80px 2rem;
+            background: #F8F9FA;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .info-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .info-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            padding: 80px 2rem;
+            background: var(--white);
+        }
+
+        .schedule-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .schedule-card {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+        }
+
+        .age-tag {
+            background: rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .vaccine-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .vaccine-desc {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 2rem;
+            background: #F8F9FA;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #F8F9FA;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--gray);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            padding: 80px 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .btn-container {
+                justify-content: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-shield-virus"></i>
+                ImunSehat
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#info">Informasi</a></li>
+                <li><a href="#schedule">Jadwal</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Lindungi Buah Hati Anda dengan Imunisasi</h1>
+                <p>Program imunisasi lengkap untuk kesehatan optimal anak Indonesia. Dapatkan informasi terpercaya dan jadwal imunisasi terkini.</p>
+                <div class="btn-container">
+                    <a href="#schedule" class="btn btn-primary">Lihat Jadwal</a>
+                    <a href="#info" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=500" alt="Imunisasi">
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Cards Section -->
+    <section class="info-section" id="info">
+        <div class="section-title">
+            <h2>Mengapa Imunisasi Penting?</h2>
+            <p>Ketahui manfaat dan pentingnya imunisasi untuk kesehatan anak</p>
+        </div>
+        <div class="info-cards">
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Perlindungan Maksimal</h3>
+                <p>Imunisasi memberikan perlindungan terhadap penyakit berbahaya yang dapat mengancam jiwa anak.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-users"></i>
+                <h3>Kekebalan Kelompok</h3>
+                <p>Melindungi tidak hanya anak Anda, tetapi juga masyarakat sekitar dari penyebaran penyakit.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-heart"></i>
+                <h3>Investasi Kesehatan</h3>
+                <p>Mencegah lebih baik daripada mengobati. Imunisasi adalah investasi jangka panjang untuk kesehatan.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Aman & Teruji</h3>
+                <p>Semua vaksin telah melalui uji klinis yang ketat dan terbukti aman untuk anak-anak.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Tumbuh Optimal</h3>
+                <p>Anak yang sehat dapat tumbuh dan berkembang secara optimal tanpa gangguan penyakit.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-globe"></i>
+                <h3>Standar Global</h3>
+                <p>Program imunisasi Indonesia mengikuti standar WHO untuk kesehatan anak terbaik.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule-section" id="schedule">
+        <div class="schedule-container">
+            <div class="section-title">
+                <h2>Jadwal Imunisasi Dasar</h2>
+                <p>Panduan lengkap imunisasi sesuai usia anak</p>
+            </div>
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <span class="age-tag">0 Bulan</span>
+                    <div class="vaccine-name">Hepatitis B (HB-0)</div>
+                    <div class="vaccine-desc">Diberikan dalam 24 jam setelah lahir</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">1 Bulan</span>
+                    <div class="vaccine-name">BCG & Polio 1</div>
+                    <div class="vaccine-desc">Perlindungan TBC dan Polio</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">2 Bulan</span>
+                    <div class="vaccine-name">DPT-HB-Hib 1</div>
+                    <div class="vaccine-desc">Vaksin kombinasi & Polio 2</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">3 Bulan</span>
+                    <div class="vaccine-name">DPT-HB-Hib 2</div>
+                    <div class="vaccine-desc">Dosis kedua & Polio 3</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">4 Bulan</span>
+                    <div class="vaccine-name">DPT-HB-Hib 3</div>
+                    <div class="vaccine-desc">Dosis ketiga & Polio 4, IPV</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">9 Bulan</span>
+                    <div class="vaccine-name">Campak/MR</div>
+                    <div class="vaccine-desc">Perlindungan campak & rubella</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">18 Bulan</span>
+                    <div class="vaccine-name">Booster DPT-HB-Hib</div>
+                    <div class="vaccine-desc">Penguatan imunitas & MR</div>
+                </div>
+                <div class="schedule-card">
+                    <span class="age-tag">2-18 Tahun</span>
+                    <div class="vaccine-name">Imunisasi Lanjutan</div>
+                    <div class="vaccine-desc">Sesuai program sekolah</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-title">
+                <h2>Pertanyaan Umum</h2>
+                <p>Temukan jawaban atas pertanyaan seputar imunisasi</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Apakah imunisasi aman untuk bayi?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, imunisasi sangat aman. Semua vaksin telah melalui uji klinis yang ketat dan diawasi oleh BPOM. Efek samping yang mungkin terjadi umumnya ringan seperti demam ringan atau kemerahan di area suntikan.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Bagaimana jika jadwal imunisasi terlewat?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Jika terlewat, segera konsultasikan dengan dokter atau petugas kesehatan. Imunisasi susulan dapat diberikan sesuai dengan kondisi dan usia anak. Jangan khawatir, masih ada kesempatan untuk melengkapi imunisasi.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Apakah imunisasi gratis?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, imunisasi dasar yang termasuk dalam program pemerintah tersedia gratis di Puskesmas dan Posyandu. Anda hanya perlu membawa KTP, KK, dan buku KIA/KMS anak.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Apa yang harus dilakukan setelah imunisasi?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pantau kondisi anak 24-48 jam setelah imunisasi. Berikan ASI/minum yang cukup, kompres dengan air hangat jika demam, dan berikan parasetamol sesuai dosis jika diperlukan. Hubungi dokter jika ada reaksi yang mengkhawatirkan.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Bolehkah imunisasi saat anak sakit?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sebaiknya tunda imunisasi jika anak sedang sakit berat atau demam tinggi. Namun, pilek ringan tanpa demam biasanya bukan halangan. Konsultasikan dengan dokter untuk memastikan kondisi anak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Hubungi Kami</h2>
+            <p>Konsultasi gratis seputar imunisasi untuk buah hati Anda</p>
+            <a href="#" class="btn btn-primary">Konsultasi Sekarang</a>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Hotline: 1500-567</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@imunsehat.id</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tersedia di seluruh Indonesia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tentang ImunSehat</h3>
+                <p>Platform informasi terpercaya untuk edukasi dan penyuluhan imunisasi di Indonesia.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Link Cepat</h3>
+                <ul>
+                    <li><a href="#info">Informasi Imunisasi</a></li>
+                    <li><a href="#schedule">Jadwal Imunisasi</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Artikel Kesehatan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#">Konsultasi Online</a></li>
+                    <li><a href="#">Cari Faskes Terdekat</a></li>
+                    <li><a href="#">Download Materi</a></li>
+                    <li><a href="#">Reminder Imunisasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 1500-567</li>
+                    <li><i class="fas fa-envelope"></i> info@imunsehat.id</li>
+                    <li><i class="fas fa-clock"></i> Sen-Jum: 08:00-16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ImunSehat. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.info-card, .schedule-card, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add loading states for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.classList.contains('btn-primary') && this.textContent === 'Konsultasi Sekarang') {
+                    e.preventDefault();
+                    this.innerHTML = '<span class="loading-spinner" style="display: inline-block; width: 20px; height: 20px; border-width: 3px;"></span>';
+                    
+                    // Simulate loading
+                    setTimeout(() => {
+                        this.innerHTML = 'Konsultasi Sekarang';
+                        alert('Fitur konsultasi akan segera tersedia!');
+                    }, 2000);
+                }
+            });
+        });
+
+        // Counter animation for statistics (if needed)
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString('id-ID');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString('id-ID');
+                }
+            }, 16);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any initialization code here
+            console.log('ImunSehat website loaded successfully!');
+        });
+    </script>
+</body>
+</html>
